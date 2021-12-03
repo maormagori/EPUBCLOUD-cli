@@ -1,0 +1,24 @@
+{
+  "name": "epubcloud-cli",
+  "version": "1.0.0",
+  "description": "A CLI tool for managing your books on the EPUBCLOUD",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maormagori/EPUBCLOUD-cli.git"
+  },
+  "author": "Maor Magori",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/maormagori/EPUBCLOUD-cli/issues"
+  },
+  "homepage": "https://github.com/maormagori/EPUBCLOUD-cli#readme",
+  "dependencies": {
+    "chalk": "^5.0.0",
+    "commander": "^8.3.0",
+    "conf": "^10.1.1"
+  }
+}
