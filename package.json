@@ -4,7 +4,7 @@
   "description": "A CLI tool for managing your books on the EPUBCLOUD",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -17,8 +17,14 @@
   },
   "homepage": "https://github.com/maormagori/EPUBCLOUD-cli#readme",
   "dependencies": {
+    "axios": "^0.24.0",
     "chalk": "^5.0.0",
     "commander": "^8.3.0",
-    "conf": "^10.1.1"
+    "conf": "^10.1.1",
+    "randomstring": "^1.2.1"
+  },
+  "devDependencies": {
+    "dotenv": "^10.0.0",
+    "jest": "^27.4.3"
   }
 }
