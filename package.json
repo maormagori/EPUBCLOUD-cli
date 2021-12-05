@@ -4,7 +4,9 @@
   "description": "A CLI tool for managing your books on the EPUBCLOUD",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "start": "npm run-script epubcloud",
+    "epubcloud": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -21,7 +23,10 @@
     "chalk": "^5.0.0",
     "commander": "^8.3.0",
     "conf": "^10.1.1",
-    "randomstring": "^1.2.1"
+    "enquirer": "^2.3.6",
+    "listr": "^0.14.3",
+    "randomstring": "^1.2.1",
+    "zen-observable": "^0.8.15"
   },
   "devDependencies": {
     "dotenv": "^10.0.0",
