@@ -17,7 +17,7 @@ class EpubCloudCommunicator {
         try {
             res = await axios.post(EPUBCLOUD_API, body);
 
-            if (res.data.Error !== 0) {
+            if (res.data.Error != 0) {
                 throw new Error(
                     `Error code received from API: ${res.data.Error} \n Error message: ${res.data.Errstr}`
                 );
@@ -98,11 +98,12 @@ class EpubCloudCommunicator {
                 token: this.token,
                 bookid: bookid,
             })
-        ).data.bookdata;
+        ).data.bookdata[0];
 
         return bookData;
     }
 
+    //DOES'NT WORK YET
     async getBook(bookid) {
         return (
             await axios.get(EPUBCLOUD_API + "/", {
