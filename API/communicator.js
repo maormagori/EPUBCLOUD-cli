@@ -30,6 +30,8 @@ class EpubCloudCommunicator {
         }
     }
 
+    //Suspecting that multiple gcmregid are registered as multiple devices so just in case:
+    //TODO: generate gcmregid one and save locally.
     async connect() {
         this.rengine = (
             await this.request({
