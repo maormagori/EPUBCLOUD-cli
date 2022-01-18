@@ -1,5 +1,7 @@
 const axios = require("axios");
 const randomstring = require("randomstring");
+const fs = require("fs");
+const path = require("path");
 //Still not sure if apikey is private to the user or the client so ATM it's private.
 require("dotenv").config();
 
@@ -10,6 +12,16 @@ class EpubCloudCommunicator {
         this.email = email || "";
         this.password = password || "";
         this.apikey = apikey || process.env.APIKEY;
+
+        if (fs.existsSync(path.join(__dirname, "gcmregid")))
+            this.gcmregid = fs.readFileSync(path.join(__dirname, "gcmregid"), {
+                encoding: "utf-8",
+            });
+        else {
+            const mockGcmregid = randomstring.generate(152);
+            this.gcmregid = mockGcmregid;
+            fs.writeFileSync(path.join(__dirname, "gcmregid"), mockGcmregid);
+        }
     }
 
     async request(body) {
@@ -30,8 +42,6 @@ class EpubCloudCommunicator {
         }
     }
 
-    //Suspecting that multiple gcmregid are registered as multiple devices so just in case:
-    //TODO: generate gcmregid one and save locally.
     async connect() {
         this.rengine = (
             await this.request({
@@ -50,7 +60,7 @@ class EpubCloudCommunicator {
                 apikey: this.apikey,
                 email: this.email,
                 password: this.password,
-                gcmregid: randomstring.generate(152),
+                gcmregid: this.gcmregid,
             })
         ).data.Token;
 
@@ -68,7 +78,7 @@ class EpubCloudCommunicator {
                 email: this.email,
                 token: this.token,
                 lang: "en",
-                gcmregid: randomstring.generate(152),
+                gcmregid: this.gcmregid,
                 rengine: this.rengine,
             })
         ).data.Token;
