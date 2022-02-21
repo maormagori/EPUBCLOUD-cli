@@ -37,6 +37,7 @@
   },
   "devDependencies": {
     "dotenv": "^10.0.0",
-    "jest": "^27.4.3"
+    "jest": "^27.4.3",
+    "standard-version": "^9.3.2"
   }
 }
