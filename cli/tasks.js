@@ -10,7 +10,7 @@ const tasks = new listr([
     {
         title: "Signing into account",
         task: (ctx) => {
-            ctx.api = new api(ctx.email, ctx.password);
+            ctx.api = new api(ctx.email, ctx.password, ctx.apikey);
             return ctx.api.connect();
         },
     },

@@ -4,7 +4,6 @@ const fs = require("fs");
 const path = require("path");
 const https = require("https");
 //Still not sure if apikey is private to the user or the client so ATM it's private.
-require("dotenv").config();
 
 const EPUBCLOUD_API = "https://epubcloud.heliconbooks.com/epubcloudapi.php";
 
@@ -12,7 +11,7 @@ class EpubCloudCommunicator {
     constructor(email, password, apikey) {
         this.email = email || "";
         this.password = password || "";
-        this.apikey = apikey || process.env.APIKEY;
+        this.apikey = apikey || "";
 
         if (fs.existsSync(path.join(__dirname, "gcmregid")))
             this.gcmregid = fs.readFileSync(path.join(__dirname, "gcmregid"), {

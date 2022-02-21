@@ -10,9 +10,7 @@ program
         "epubcloud account password is necessary."
     )
     .requiredOption("-d, --directory <dir>", "EPUB files download directory.")
-    .option("-a, --all", "Download all of user's available books.", false)
-
-    //Uninitialized but in planning.
-    .option("-c, --convert", "Choose books files' extension.");
+    .requiredOption("-ak, --apikey <apikey>", "Your hbreader apikey.")
+    .option("-a, --all", "Download all of user's available books.", false);
 
 module.exports = program;
