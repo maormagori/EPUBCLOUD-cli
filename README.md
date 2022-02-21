@@ -1,5 +1,7 @@
 # 🚧 [WIP] EPUBCLOUD-cli
 
+![npm](https://img.shields.io/npm/v/epubcloud-cli?style=flat-square)
+
 ## **Please read:**
 
 This tool should not be used, under any circumstances, to illegally publish protected work.
