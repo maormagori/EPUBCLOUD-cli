@@ -2,15 +2,13 @@ const listr = require("listr");
 const Observable = require("zen-observable");
 const { MultiSelect } = require("enquirer");
 const api = require("../API/communicator");
-const { promises, createWriteStream } = require("fs");
-const fs = promises;
 const path = require("path");
 
 const tasks = new listr([
     {
         title: "Signing into account",
         task: (ctx) => {
-            ctx.api = new api(ctx.email, ctx.password);
+            ctx.api = new api(ctx.email, ctx.password, ctx.apikey);
             return ctx.api.connect();
         },
     },

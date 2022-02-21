@@ -7,18 +7,19 @@
         {
             "type": "pwa-node",
             "request": "launch",
-            "name": "Launch Program",
+            "name": "Testing cli",
             "skipFiles": ["<node_internals>/**"],
             "program": "${workspaceFolder}\\index.js",
+            "envFile": "${workspaceFolder}\\.env",
             "args": [
                 "-e",
                 "${env:TESTING_EMAIL}",
                 "-p",
-                "${env:TESTING_PASSWORD}",
+                "{env:TESTING_PASSWORD}",
                 "--directory",
                 "${workspaceFolder}/books"
             ],
-            "envFile": "${workspaceFolder}/.env"
+            "console": "integratedTerminal"
         }
     ]
 }
