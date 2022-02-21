@@ -2,6 +2,7 @@ const axios = require("axios");
 const randomstring = require("randomstring");
 const fs = require("fs");
 const path = require("path");
+const https = require("https");
 //Still not sure if apikey is private to the user or the client so ATM it's private.
 require("dotenv").config();
 
@@ -115,21 +116,28 @@ class EpubCloudCommunicator {
         return bookData;
     }
 
-    //DOES'NT WORK YET
-    async getBook(bookid) {
-        return (
-            await axios.get(EPUBCLOUD_API + "/", {
-                params: {
-                    actions: "getbook",
-                    appname: "hbreader",
-                    apikey: this.apikey,
-                    email: this.email,
-                    token: this.token,
-                    bookid: bookid,
-                },
-                forcedJSONParsing: false,
-            })
-        ).data;
+    async getBook(bookid, filePath) {
+        const res = await axios.get(EPUBCLOUD_API + "/", {
+            params: {
+                action: "getbook",
+                appname: "hbreader",
+                apikey: this.apikey,
+                email: this.email,
+                token: this.token,
+                bookid: bookid,
+            },
+            forcedJSONParsing: false,
+            responseType: "stream",
+        });
+
+        let ws = fs.createWriteStream(filePath);
+        res.data.pipe(ws);
+
+        await new Promise((resolve, reject) => {
+            res.data.on("end", () => {
+                resolve();
+            });
+        });
     }
 }
 

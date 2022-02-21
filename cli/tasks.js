@@ -2,7 +2,8 @@ const listr = require("listr");
 const Observable = require("zen-observable");
 const { MultiSelect } = require("enquirer");
 const api = require("../API/communicator");
-const fs = require("fs").promises;
+const { promises, createWriteStream } = require("fs");
+const fs = promises;
 const path = require("path");
 
 const tasks = new listr([
@@ -24,6 +25,8 @@ const tasks = new listr([
                     return bookData;
                 })
             );
+
+            //TODO: fix no book in account.
             ctx.allBooks = books;
         },
     },
@@ -74,13 +77,13 @@ const tasks = new listr([
         task: (ctx, task) => {
             return new Observable(async (observer) => {
                 let downloadedBooksAmount = 0;
-                ctx.desiredBooks.forEach(async (bookId, bookName) => {
+                for (const [bookName, bookId] of ctx.desiredBooks.entries()) {
                     try {
                         observer.next(`Downloading ${bookName}...`);
 
-                        await fs.writeFile(
-                            path.join(ctx.directory, `${bookName}.epub`),
-                            await ctx.api.getBook(bookId)
+                        await ctx.api.getBook(
+                            bookId,
+                            path.join(ctx.directory, `${bookName}.epub`)
                         );
 
                         observer.next(`Downloaded ${bookName}!`);
@@ -90,7 +93,8 @@ const tasks = new listr([
                         observer.next(`❌ Failed downloading ${bookName}`);
                         throw error;
                     }
-                });
+                }
+                //ctx.desiredBooks.forEach(async (bookId, bookName) => {});
                 task.title = `Successfully downloaded ${downloadedBooksAmount}/${ctx.desiredBooks.size} books.`;
                 observer.complete();
             });
