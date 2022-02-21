@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "start": "npm run-script epubcloud",
-    "epubcloud": "node ./bin/epubcloud"
+    "epubcloud": "node ./bin/epubcloud",
+    "release": "standard-version"
   },
   "bin": "./bin/epubcloud",
   "repository": {
