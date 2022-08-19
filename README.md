@@ -26,7 +26,6 @@ Options:
   -e, --email <email>        epubcloud account email is necessary.
   -p, --password <password>  epubcloud account password is necessary.
   -d, --directory <dir>      EPUB files download directory.
-  -ak, --apikey <apikey>     Your hbreader apikey. //necessary atm
   -a, --all                  Download all of user's available books. (default: false)
   -h, --help                 display help for command
 ```
