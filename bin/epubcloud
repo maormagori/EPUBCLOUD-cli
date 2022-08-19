@@ -3,7 +3,7 @@ const options = require("../cli/program").parse().opts();
 const tasks = require("../cli/tasks");
 
 const validateOpts = (opts) => {
-    //TODO: Add validation
+  //TODO: Add validation
 };
 
 validateOpts(options);
